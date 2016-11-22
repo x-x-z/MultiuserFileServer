@@ -1,4 +1,4 @@
-package ru.kibia.fileserver.mvc.model.entity;
+package ru.kibia.fileserver.mvc.model.file.entity;
 
 import javax.persistence.*;
 import java.io.File;
@@ -6,41 +6,34 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "SHARED_FILES", uniqueConstraints = { @UniqueConstraint( columnNames = { "path", "userId" } ) })
-public class SharedFile implements Serializable {
+public class SharedFileEntity implements Serializable {
 
     private static final long serialVersionUID = 8999225423023905892L;
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="shared_file_id_seq")
     @SequenceGenerator(name="shared_file_id_seq", sequenceName="shared_files_sequence")
-    private long fileId;
+    @Column(updatable = false)
+    private long id;
 
-    @OneToOne
-    @JoinColumn(name = "userId", nullable = false)
-    private User user;
+    @Column(updatable = false)
+    private long userId;
 
     @Column(nullable = false)
     private String path;
 
-    private long size;
-
-    @ManyToOne
-    @JoinTable(name="SHARED_ACCESS")
-    private User userSlave;
-
-    public SharedFile() {
+    public SharedFileEntity() {
     }
 
-    public SharedFile(File file, User user) {
+    public SharedFileEntity(File file, long ownerUserId) {
         this.path = file.getAbsolutePath();
-        this.size = file.length();
-        this.user = user;
+        this.userId = ownerUserId;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "SharedFile[fileId=%d, userId='%s', path='%s', size = %d]",
-                fileId, user.getUserId(), path, size);
+                "SharedFileEntity[id=%d, userId='%s', path='%s']",
+                id, userId, path);
     }
 }

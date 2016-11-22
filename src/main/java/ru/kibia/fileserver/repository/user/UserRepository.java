@@ -1,10 +1,13 @@
 package ru.kibia.fileserver.repository.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.kibia.fileserver.mvc.model.entity.User;
+import ru.kibia.fileserver.mvc.model.user.entity.UserEntity;
 
 /**
  * Created by D.Kostin on 19.11.2016.
  */
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+
+    UserEntity getByLogin(String login);
+
 }
