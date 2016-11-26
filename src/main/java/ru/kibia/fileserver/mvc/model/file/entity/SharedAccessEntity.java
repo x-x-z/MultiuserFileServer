@@ -24,4 +24,11 @@ public class SharedAccessEntity {
     public SharedAccessPkEntity getPk() {
         return pk;
     }
+
+    @Override
+    public String toString() {
+        return "SharedAccessEntity{" +
+                "pk=" + pk +
+                '}';
+    }
 }

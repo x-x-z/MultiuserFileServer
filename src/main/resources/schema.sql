@@ -37,17 +37,17 @@ CREATE TABLE IF NOT EXISTS public.users
 CREATE TABLE IF NOT EXISTS public.shared_files
 (
   id bigint NOT NULL,
-  user_id bigint NOT NULL,
+  user_owner_id bigint NOT NULL,
   path character varying(255) NOT NULL,
 
   CONSTRAINT shared_files_pkey PRIMARY KEY (id),
-  CONSTRAINT shared_files_fkey FOREIGN KEY (user_id) REFERENCES public.users (id),
-  CONSTRAINT shared_files_unique UNIQUE (path, user_id)
+  CONSTRAINT shared_files_fkey FOREIGN KEY (user_owner_id) REFERENCES public.users (id),
+  CONSTRAINT shared_files_unique UNIQUE (path, user_owner_id)
 );
 
 CREATE TABLE public.shared_access
 (
-  user_id bigint,
+  user_id bigint NOT NULL,
   file_id bigint NOT NULL,
   CONSTRAINT shared_access_pkey PRIMARY KEY (file_id, user_id),
   CONSTRAINT shared_access_file_fkey FOREIGN KEY (file_id) REFERENCES public.shared_files (id),

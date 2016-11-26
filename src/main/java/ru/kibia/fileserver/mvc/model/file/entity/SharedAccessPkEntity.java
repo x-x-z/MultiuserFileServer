@@ -27,4 +27,12 @@ public class SharedAccessPkEntity implements Serializable {
     public long getUserId() {
         return userId;
     }
+
+    @Override
+    public String toString() {
+        return "SharedAccessPkEntity{" +
+                "fileId=" + fileId +
+                ", userId=" + userId +
+                '}';
+    }
 }

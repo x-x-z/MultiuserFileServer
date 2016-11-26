@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "SHARED_FILES", uniqueConstraints = { @UniqueConstraint( columnNames = { "path", "userId" } ) })
+@Table(name = "SHARED_FILES", uniqueConstraints = { @UniqueConstraint( columnNames = { "path", "userOwnerId" } ) })
 public class SharedFileEntity implements Serializable {
 
     private static final long serialVersionUID = 8999225423023905892L;
@@ -17,7 +17,7 @@ public class SharedFileEntity implements Serializable {
     private long id;
 
     @Column(updatable = false)
-    private long userId;
+    private long userOwnerId;
 
     @Column(nullable = false)
     private String path;
@@ -25,15 +25,27 @@ public class SharedFileEntity implements Serializable {
     public SharedFileEntity() {
     }
 
-    public SharedFileEntity(File file, long ownerUserId) {
+    public SharedFileEntity(File file, long userOwnerId) {
         this.path = file.getAbsolutePath();
-        this.userId = ownerUserId;
+        this.userOwnerId = userOwnerId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getUserOwnerId() {
+        return userOwnerId;
+    }
+
+    public String getPath() {
+        return path;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "SharedFileEntity[id=%d, userId='%s', path='%s']",
-                id, userId, path);
+                "SharedFileEntity[id=%d, userOwnerId='%s', path='%s']",
+                id, userOwnerId, path);
     }
 }

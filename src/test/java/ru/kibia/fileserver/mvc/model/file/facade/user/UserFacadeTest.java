@@ -22,9 +22,6 @@ public class UserFacadeTest {
     @Autowired
     private UserFacade userFacade;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @Test
     @Transactional
     public void testInsertAndGet() throws Exception {
@@ -38,16 +35,16 @@ public class UserFacadeTest {
         String login = "test=test-0x1c2QLf"+id;
 
         saveSingleUser(id);
-        User user = userFacade.getUser(login);
+        User user = userFacade.get(login);
         long uid = user.getId();
 
         Assert.assertNotNull(user);
 
         user.setPassword("test-pass");
-        userFacade.saveUser(user);
-        userRepository.flush();
+        userFacade.save(user);
+        userFacade.flush();
 
-        user = userFacade.getUser(login);
+        user = userFacade.get(login);
 
         Assert.assertEquals("test-pass", user.getPassword());
         Assert.assertEquals(uid, user.getId());
@@ -63,9 +60,9 @@ public class UserFacadeTest {
     private void saveSingleUser(int id) {
         String login = "test=test-0x1c2QLf"+id;
 
-        userFacade.saveUser(createUser(id));
-        userRepository.flush();
-        User user = userFacade.getUser(login);
+        userFacade.save(createUser(id));
+        userFacade.flush();
+        User user = userFacade.get(login);
 
         Assert.assertNotNull(user);
         Assert.assertEquals(login, user.getLogin());

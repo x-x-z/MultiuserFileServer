@@ -17,12 +17,16 @@ public class UserFacade {
     private UserRepository repository;
 
     @Transactional
-    public void saveUser(User user) {
+    public void save(User user) {
         repository.save(UserConverter.beanToEntity(user));
     }
 
     @Transactional(readOnly = true)
-    public User getUser(String login) {
+    public User get(String login) {
         return UserConverter.entityToBean(repository.getByLogin(login));
+    }
+
+    public void flush() {
+        repository.flush();
     }
 }
