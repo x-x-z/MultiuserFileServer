@@ -1,7 +1,7 @@
 package ru.kibia.fileserver.repository.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.kibia.fileserver.mvc.model.user.entity.UserEntity;
+import ru.kibia.fileserver.rest.model.user.entity.UserEntity;
 
 /**
  * Created by D.Kostin on 19.11.2016.

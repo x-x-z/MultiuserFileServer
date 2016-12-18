@@ -1,8 +1,8 @@
 package ru.kibia.fileserver.repository.file;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.kibia.fileserver.mvc.model.file.entity.SharedAccessEntity;
-import ru.kibia.fileserver.mvc.model.file.entity.SharedAccessPkEntity;
+import ru.kibia.fileserver.rest.model.file.entity.SharedAccessEntity;
+import ru.kibia.fileserver.rest.model.file.entity.SharedAccessPkEntity;
 
 import java.util.List;
 

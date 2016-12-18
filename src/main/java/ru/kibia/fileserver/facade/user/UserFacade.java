@@ -3,8 +3,8 @@ package ru.kibia.fileserver.facade.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kibia.fileserver.mvc.model.user.bean.User;
-import ru.kibia.fileserver.mvc.model.user.converter.UserConverter;
+import ru.kibia.fileserver.rest.model.user.bean.User;
+import ru.kibia.fileserver.rest.model.user.converter.UserConverter;
 import ru.kibia.fileserver.repository.user.UserRepository;
 
 /**

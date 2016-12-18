@@ -1,7 +1,7 @@
 package ru.kibia.fileserver.repository.file;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.kibia.fileserver.mvc.model.file.entity.SharedFileEntity;
+import ru.kibia.fileserver.rest.model.file.entity.SharedFileEntity;
 import java.util.List;
 
 /**

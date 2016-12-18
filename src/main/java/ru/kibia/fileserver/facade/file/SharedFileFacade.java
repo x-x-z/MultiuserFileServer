@@ -3,10 +3,10 @@ package ru.kibia.fileserver.facade.file;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kibia.fileserver.mvc.model.file.bean.SharedFile;
-import ru.kibia.fileserver.mvc.model.file.converter.SharedFileConverter;
-import ru.kibia.fileserver.mvc.model.file.entity.SharedAccessEntity;
-import ru.kibia.fileserver.mvc.model.file.entity.SharedFileEntity;
+import ru.kibia.fileserver.rest.model.file.bean.SharedFile;
+import ru.kibia.fileserver.rest.model.file.converter.SharedFileConverter;
+import ru.kibia.fileserver.rest.model.file.entity.SharedAccessEntity;
+import ru.kibia.fileserver.rest.model.file.entity.SharedFileEntity;
 import ru.kibia.fileserver.repository.file.SharedAccessRepository;
 import ru.kibia.fileserver.repository.file.SharedFileRepository;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class SharedFileFacade {
     public void save(SharedFile sharedFile) {
         SharedFileEntity entity = SharedFileConverter.beanToEntity(sharedFile);
         fileRepository.save(entity);
-        accessRepository.save(SharedFileConverter.beanToEntities(entity.getId(), sharedFile.getForeignUsersId()));
+        accessRepository.save(SharedFileConverter.beanToEntities(entity.getId(), sharedFile.getAccesses()));
     }
 
     @Transactional(readOnly = true)
@@ -49,7 +49,7 @@ public class SharedFileFacade {
     }
 
     @Transactional(readOnly = true)
-    public List<SharedFile> getAllForeignFiles(long userId) {
+    public List<SharedFile> getAllAvailableFiles(long userId) {
         List<SharedAccessEntity> accessEntities = accessRepository.findAllByPkUserId(userId);
         List<SharedFile> beanList = new ArrayList<>();
 
