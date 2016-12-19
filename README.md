@@ -24,7 +24,7 @@ The project has the following structure:
 ### Available requests:
 
 1.Sign up:  
-*http://localhost:8080/signup*
+*/signup*
   
 > Headers  
 ```
