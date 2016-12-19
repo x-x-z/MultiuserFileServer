@@ -15,3 +15,33 @@
 7. Commit your changes in to your GitHub repository if all is fine. Send a request to the author to add your changes to the main project
 
 ## HOW IT WORKS:
+The database contains four tables that store users and a list of shared files:
+![database structure](https://github.com/x-x-z/Files/blob/master/MultiuserFileServer/images/fileserver_db.png)
+
+The project has the following structure:
+![project structure](https://github.com/x-x-z/Files/blob/master/MultiuserFileServer/images/diagram.png)
+
+### Available requests:
+
+1.Sign up:  
+*http://localhost:8080/signup*
+  
+> Headers  
+```
+Content-Type: application/json
+```
+> Payload  
+```
+{
+  	"login":"kostin",
+    "password" : "123",
+    "firstName":"Denis",
+    "middleName":"Vladimirovich",
+    "lastName":"Kostin"  
+}
+```
+  
+2.File explorer:  
+*/file?path=*  
+  
+> *path* - path to folder or file. The file will be downloaded automatically
